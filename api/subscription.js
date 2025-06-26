@@ -1,11 +1,11 @@
 export default async function handler(req, res) {
-  const { subscriptionId } = req.query;
+  const { customerId } = req.query;
 
   if (!subscriptionId) {
     return res.status(400).json({ error: 'Missing subscriptionId' });
   }
 
-  const url = `https://api.smartrr.com/subscriptions/${subscriptionId}`;
+  const url = `https://api.smartrr.com/subscriptions/${customeriD}`;
 
   const headers = {
     'Authorization': 'Bearer juTaTgaEAajJdAcTG0AsWUAjTJwTX00TFju', // ✅ Replace if needed
