@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   const url = `https://api.smartrr.com/subscriptions/${subscriptionId}`;
 
   const headers = {
-    'Authorization': 'Bearer juTaTgaEAajJdAcTg0ASwUUAjTJwTX00TFju', // Replace with your actual Smartrr token if different
+    'Authorization': 'Bearer juTaTgaEAajJdAcTG0AsWUAjTJwTX00TFju', // ✅ Replace if needed
     'Content-Type': 'application/json'
   };
 
@@ -18,13 +18,17 @@ export default async function handler(req, res) {
       headers
     });
 
+    const text = await response.text();
+
     if (!response.ok) {
       return res.status(response.status).json({
-        error: `Smartrr API error: ${response.status}`
+        error: 'Smartrr API error',
+        status: response.status,
+        response: text
       });
     }
 
-    const data = await response.json();
+    const data = JSON.parse(text);
     return res.status(200).json(data);
   } catch (err) {
     return res.status(500).json({
